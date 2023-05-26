@@ -12,7 +12,7 @@ datasource db {
 
 model Project {
   id            Int   @id @default(autoincrement())
-  name          String
+  title          String
   tag           String
   description   String?
   website       String?

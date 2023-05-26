@@ -2,21 +2,20 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import { Navigation } from '../components/nav';
 import { Card } from '../components/card';
-import allProjects from '../../data/projects.json';
+import { allProjects } from 'contentlayer/generated';
 import { Eye } from 'lucide-react';
-import { Project } from '@prisma/client';
 import { Article } from './article';
 
 const ProjectsPage = async () => {
-  const featured = allProjects.find((project) => project.favorite)!;
-  const top2 = allProjects.find((project) => project.favorite && project.id !== featured.id)!;
-  const top3 = allProjects.find(
-    (project) => project.favorite && project.id !== featured.id && project.id !== top2.id
-  )!;
+  const featured = allProjects.find((project) => project.slug === 'code-commerce')!;
+  const top2 = allProjects.find((project) => project.slug === 'sla-website')!;
+  console.log(top2);
+  const top3 = allProjects.find((project) => project.slug === 'node-battleship')!;
   const sorted = allProjects
     .filter((project) => project.published)
     .filter(
-      (project) => project.id !== featured.id && project.id !== top2.id && project.id !== top3.id
+      (project) =>
+        project.slug !== featured.slug && project.slug !== top2.slug && project.slug !== top3.slug
     )
     .sort(
       (a, b) =>
@@ -38,15 +37,11 @@ const ProjectsPage = async () => {
 
         <div className='grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 '>
           <Card>
-            <Link href={`/projects/${featured.tag}`}>
+            <Link href={`/projects/${featured.slug}`}>
               <article className='relative w-full h-full p-4 md:p-8'>
                 <div className='flex items-center justify-between gap-2'>
                   <div className='text-xs text-zinc-100'>
-                    {featured?.date ? (
-                      <p>{featured.date}</p>
-                    ) : (
-                      <span>SOON</span>
-                    )}
+                    {featured?.date ? <p>{featured.date}</p> : <span>SOON</span>}
                   </div>
                   <span className='flex items-center gap-1 text-xs text-zinc-500'>
                     <Eye className='w-4 h-4' />{' '}
@@ -57,7 +52,7 @@ const ProjectsPage = async () => {
                 <h2
                   id='featured-post'
                   className='mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display'>
-                  {featured?.name}
+                  {featured?.title}
                 </h2>
                 <p className='mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300'>
                   {featured?.description}
@@ -73,7 +68,7 @@ const ProjectsPage = async () => {
 
           <div className='flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 '>
             {[top2, top3].map((project) => (
-              <Card key={project.tag}>
+              <Card key={project.slug}>
                 <Article project={project} views={0} />
               </Card>
             ))}

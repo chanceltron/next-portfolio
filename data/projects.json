@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Code Commerce",
+    "title": "Code Commerce",
     "tag": "code-commerce",
-    "description": "This is a project that built on itself, starting with a simple landing page and ending with a full e-commerce site. It was built using React, TypeScript, Context API, and Commerce.js.",
+    "description": "This is a iterative project, starting with a simple landing page and ending with a full e-commerce site. It was built using React, TypeScript, Context API, and Commerce.js.",
     "website": "https://code-commerce-2.vercel.app/",
     "repository": "https://github.com/chanceltron/code-commerce-2",
     "date": "March 13, 2023",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "name": "SaaS Template",
+    "title": "SaaS Template",
     "tag": "saas-website",
     "description": "If you need an elegant, responsive, and customizable landing page for your SaaS product, this is the template for you.",
     "website": "https://saas-website-gray.vercel.app/",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "name": "Node Battleship",
+    "title": "Node Battleship",
     "tag": "node-battleship",
     "description": "Do you like Battleship? Do you like Node? Well, you're in luck! This is a simple Battleship game built using Node.js and readline/sync.",
     "website": "",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "name": "Weather App",
+    "title": "Weather App",
     "tag": "weather-app",
     "description": "This is a simple 5 day weather forecast app built using React and the OpenWeatherMap API.",
     "website": "https://weather-app-vert-psi.vercel.app/",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "name": "Folio Site",
+    "title": "Folio Site",
     "tag": "folio-website",
     "description": "A portfolio template for developers and designers.",
     "website": "https://folio-website-ashy.vercel.app/",
@@ -56,12 +56,12 @@
   },
   {
     "id": 6,
-    "name": "Superior Livestock Rebranding",
+    "title": "Superior Livestock Rebranding",
     "tag": "sla-website",
     "description": "This project is a complete overhaul and rebranding of the Superior Livestock Auction website. It was built using React, and Wordpress.",
     "website": "https://beta.superiorlivestock.com/",
     "repository": "",
-    "date": "October 5, 2022",
+    "date": "",
     "published": true,
     "favorite": true
   }
