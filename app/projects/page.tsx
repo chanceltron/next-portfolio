@@ -3,9 +3,7 @@ import Link from 'next/link';
 import { Navigation } from '../components/nav';
 import { Card } from '../components/card';
 import allProjects from '../../data/projects.json';
-// import { Article } from './article';
 import { Eye } from 'lucide-react';
-import { get } from 'http';
 import { Project } from '@prisma/client';
 import { Article } from './article';
 
@@ -47,11 +45,6 @@ const ProjectsPage = async () => {
                     {featured?.date ? (
                       <p>{featured.date}</p>
                     ) : (
-                      // <time dateTime={featured.date.toISOString()}>
-                      //   {Intl.DateTimeFormat(undefined, {
-                      //     dateStyle: 'medium',
-                      //   }).format(featured.date)}
-                      // </time>
                       <span>SOON</span>
                     )}
                   </div>

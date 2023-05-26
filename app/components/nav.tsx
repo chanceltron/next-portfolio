@@ -3,6 +3,12 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
+const navigation = [
+  { name: 'Projects', href: '/projects' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Contact', href: '/contact' },
+];
+
 export const Navigation: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
@@ -23,12 +29,11 @@ export const Navigation: React.FC = () => {
         }`}>
         <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
           <div className='flex justify-between gap-8'>
-            <Link href='/projects' className='duration-200 text-zinc-400 hover:text-zinc-100'>
-              Projects
+            {navigation.map((nav) => (
+            <Link key={nav.name} href='/projects' className='duration-200 text-zinc-400 hover:text-zinc-100'>
+              {nav.name}
             </Link>
-            <Link href='/contact' className='duration-200 text-zinc-400 hover:text-zinc-100'>
-              Contact
-            </Link>
+            ))}
           </div>
 
           <Link href='/' className='duration-200 text-zinc-300 hover:text-zinc-100'>
