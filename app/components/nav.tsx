@@ -29,9 +29,9 @@ export const Navigation: React.FC = () => {
         }`}>
         <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
           <div className='flex justify-between gap-8'>
-            {navigation.map((nav) => (
-            <Link key={nav.name} href='/projects' className='duration-200 text-zinc-400 hover:text-zinc-100'>
-              {nav.name}
+            {navigation.map((item) => (
+            <Link key={item.name} href={item.href} className='duration-200 text-zinc-400 hover:text-zinc-100'>
+              {item.name}
             </Link>
             ))}
           </div>

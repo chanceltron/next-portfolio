@@ -8,9 +8,9 @@ import { Article } from './article';
 
 const ProjectsPage = async () => {
   const featured = allProjects.find((project) => project.slug === 'code-commerce')!;
-  const top2 = allProjects.find((project) => project.slug === 'sla-website')!;
+  const top2 = allProjects.find((project) => project.slug === 'folio-website')!;
   console.log(top2);
-  const top3 = allProjects.find((project) => project.slug === 'node-battleship')!;
+  const top3 = allProjects.find((project) => project.slug === 'saas-website')!;
   const sorted = allProjects
     .filter((project) => project.published)
     .filter(
@@ -41,7 +41,15 @@ const ProjectsPage = async () => {
               <article className='relative w-full h-full p-4 md:p-8'>
                 <div className='flex items-center justify-between gap-2'>
                   <div className='text-xs text-zinc-100'>
-                    {featured?.date ? <p>{featured.date}</p> : <span>SOON</span>}
+                    {featured?.date ? (
+                      <time dateTime={new Date(featured.date).toISOString()}>
+                      {Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(
+                        new Date(featured.date)
+                      )}
+                    </time>
+                  ) : (
+                    <span>SOON</span>
+                    )}
                   </div>
                   <span className='flex items-center gap-1 text-xs text-zinc-500'>
                     <Eye className='w-4 h-4' />{' '}

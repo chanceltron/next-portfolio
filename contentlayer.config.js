@@ -51,7 +51,42 @@ export const Project = defineDocumentType(() => ({
       type: 'boolean',
       required: true,
     },
-    favorite: {
+  },
+  computedFields,
+}));
+
+export const History = defineDocumentType(() => ({
+  name: 'History',
+  filePathPattern: './work-history/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    id: {
+      type: 'number',
+      required: true,
+    },
+    title: {
+      type: 'string',
+      required: true,
+    },
+    company: {
+      type: 'string',
+      required: true,
+    },
+    slug: {
+      type: 'string',
+      required: true,
+    },
+    description: {
+      type: 'string',
+    },
+    startDate: {
+      type: 'date',
+      required: true,
+    },
+    endDate: {
+      type: 'date',
+    },
+    published: {
       type: 'boolean',
       required: true,
     },
@@ -59,25 +94,9 @@ export const Project = defineDocumentType(() => ({
   computedFields,
 }));
 
-export const Page = defineDocumentType(() => ({
-  name: 'Page',
-  filePathPattern: 'pages/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    title: {
-      type: 'string',
-      required: true,
-    },
-    description: {
-      type: 'string',
-    },
-  },
-  computedFields,
-}));
-
 export default makeSource({
   contentDirPath: './content',
-  documentTypes: [Page, Project],
+  documentTypes: [History, Project],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

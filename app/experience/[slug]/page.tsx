@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Mdx } from '@/app/components/mdx';
 import { Header } from './header';
 import './mdx.css';
-import { allProjects } from 'contentlayer/generated';
+import { allHistories } from 'contentlayer/generated';
 
 export const revalidate = 60;
 
@@ -13,18 +13,19 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props['params'][]> {
-  return allProjects
+  return allHistories
     .filter((p) => p.published)
     .map((p) => ({
       slug: p.slug,
     }));
 }
 
-export default async function PostPage({ params }: Props) {
-  const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
 
-  if (!project) {
+export default async function PostPage({ params }: Props) {
+  const slug = params.slug;
+  const job = allHistories.find((job) => job.slug === slug);
+
+  if (!job) {
     notFound();
   }
 
@@ -32,11 +33,11 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className='bg-zinc-50 min-h-screen'>
-      <Header project={project} views={views} />
+      <Header job={job} views={views} />
       {/* <ReportView slug={project.id} /> */}
 
       <article className='px-4 py-12 mx-auto prose prose-zinc prose-quoteless'>
-        <Mdx code={project.body.code} />
+        <Mdx code={job.body.code} />
       </article>
     </div>
   );
