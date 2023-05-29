@@ -1,63 +1,144 @@
-'use client';
-import { Github, Linkedin, Mail } from 'lucide-react';
-import Link from 'next/link';
-import { Navigation } from '../components/nav';
-import { Card } from '../components/card';
+import Link from "next/link";
+import { Navigation } from "../components/nav";
+import { Card } from "../components/card";
+import { allHistories } from "contentlayer/generated";
+import { Eye } from "lucide-react";
+import { Article } from "./article";
 
-const socials = [
-  {
-    icon: <Linkedin size={20} />,
-    href: 'https://linkedin.com/in/chance-ludwick',
-    label: 'LinkedIn',
-    handle: '@chance-ludwick',
-  },
-  {
-    icon: <Mail size={20} />,
-    href: 'mailto:chance@chanceludwick.dev',
-    label: 'Email',
-    handle: `chance
-		@chanceludwick.dev`,
-  },
-  {
-    icon: <Github size={20} />,
-    href: 'https://github.com/chanceltron',
-    label: 'Github',
-    handle: 'chanceltron',
-  },
-];
+const ProjectsPage = async () => {
+  const education = allHistories.filter((exp) => exp.slug === "devslopes");
+  const sorted = allHistories
+    .filter((exp) => exp.published && exp.slug !== "devslopes")
+    .sort(
+      (a, b) =>
+        new Date(b.startDate ?? Number.POSITIVE_INFINITY).getTime() -
+        new Date(a.startDate ?? Number.POSITIVE_INFINITY).getTime()
+    );
 
-export default function Example() {
   return (
-    <div className=' bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0'>
+    <div className="relative pb-16">
       <Navigation />
-      <div className='container flex items-center justify-center min-h-screen px-4 mx-auto'>
-        <div className='grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16'>
-          {socials.map((s, i) => (
-            <Card key={i}>
-              <Link
-                href={s.href}
-                target='_blank'
-                className='p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16'>
-                <span
-                  className='absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent'
-                  aria-hidden='true'
-                />
-                <span className='relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange'>
-                  {s.icon}
-                </span>{' '}
-                <div className='z-10 flex flex-col items-center'>
-                  <span className='text-xl font-medium duration-150 lg:text-3xl text-zinc-200 group-hover:text-white font-display'>
-                    {s.handle}
+      {/* Education */}
+      <div className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+        <div className="max-w-2xl mx-auto lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            Education
+          </h2>
+          <p className="mt-4 text-zinc-400">
+            {" "}
+            My professional journey shaped by expertise, achievements, and a
+            passion for learning.
+          </p>
+        </div>
+        <div className="w-full h-px bg-zinc-800" />
+
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-2">
+          <div className="grid col-span-2 gap-4">
+            {education.map((school) => (
+              <div key={school.id} className="flex gap-4 justify-center">
+                <div className="flex flex-1 justify-end px-3 py-1">
+                  <span className="text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {school.startDate && (
+                      <time dateTime={new Date(school.startDate).toISOString()}>
+                        {Intl.DateTimeFormat(undefined, {
+                          dateStyle: "medium",
+                        }).format(new Date(school.startDate))}
+                      </time>
+                    )}
                   </span>
-                  <span className='mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200'>
-                    {s.label}
+                  <span className="text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {" - "}
+                  </span>
+                  <span className="text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {school.endDate ? (
+                      <time dateTime={new Date(school.endDate).toISOString()}>
+                        {Intl.DateTimeFormat(undefined, {
+                          dateStyle: "medium",
+                        }).format(new Date(school.endDate))}
+                      </time>
+                    ) : (
+                      <span>Present</span>
+                    )}
                   </span>
                 </div>
-              </Link>
-            </Card>
-          ))}
+                <div className="flex flex-col items-center">
+                  <div className="p-2 rounded-full border border-zinc-600">
+                    <div className="w-2 h-2 rounded-full bg-zinc-600" />
+                  </div>
+                  <div className="mt-2 w-0.5 bg-zinc-600 h-full" />
+                </div>
+                <div className="w-2/3">
+                  <Card>
+                    <Article job={school} views={0} />
+                  </Card>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Work History */}
+      <div className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+        <div className="max-w-2xl mx-auto lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            Work History
+          </h2>
+          <p className="mt-4 text-zinc-400">
+            {" "}
+            My professional journey shaped by expertise, achievements, and a
+            passion for learning.
+          </p>
+        </div>
+        <div className="w-full h-px bg-zinc-800" />
+
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-2">
+          <div className="grid col-span-2 gap-4">
+            {sorted.map((job) => (
+              <div key={job.id} className="flex gap-4 justify-center">
+                <div className="flex flex-1 justify-end py-1">
+                  <span className="text-md duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {job.startDate && (
+                      <time dateTime={new Date(job.startDate).toISOString()}>
+                        {Intl.DateTimeFormat(undefined, {
+                          dateStyle: "medium",
+                        }).format(new Date(job.startDate))}
+                      </time>
+                    )}
+                  </span>
+                  <span className="text-md duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {" - "}
+                  </span>
+                  <span className="text-md duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
+                    {job.endDate ? (
+                      <time dateTime={new Date(job.endDate).toISOString()}>
+                        {Intl.DateTimeFormat(undefined, {
+                          dateStyle: "medium",
+                        }).format(new Date(job.endDate))}
+                      </time>
+                    ) : (
+                      <span>Present</span>
+                    )}
+                  </span>
+                </div>
+                <div className="my-1 flex flex-col items-center">
+                  <div className="p-2 rounded-full border border-zinc-600">
+                    <div className="w-2 h-2 rounded-full bg-zinc-600" />
+                  </div>
+                  <div className="mt-2 w-0.5 bg-zinc-600 h-full" />
+                </div>
+                <div className="w-2/3">
+                  <Card>
+                    <Article job={job} views={0} />
+                  </Card>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default ProjectsPage;

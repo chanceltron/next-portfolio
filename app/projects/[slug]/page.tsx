@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
-import allProjects from '../../../data/projects.json';
 import { Mdx } from '@/app/components/mdx';
 import { Header } from './header';
 import './mdx.css';
+import { allProjects } from 'contentlayer/generated';
 
 export const revalidate = 60;
 
 type Props = {
   params: {
-    tag: string;
+    slug: string;
   };
 };
 
@@ -16,13 +16,13 @@ export async function generateStaticParams(): Promise<Props['params'][]> {
   return allProjects
     .filter((p) => p.published)
     .map((p) => ({
-      tag: p.tag,
+      slug: p.slug,
     }));
 }
 
 export default async function PostPage({ params }: Props) {
-  const tag = params?.tag;
-  const project = allProjects.find((project) => project.tag === tag);
+  const slug = params?.slug;
+  const project = allProjects.find((project) => project.slug === slug);
 
   if (!project) {
     notFound();
@@ -36,7 +36,7 @@ export default async function PostPage({ params }: Props) {
       {/* <ReportView slug={project.id} /> */}
 
       <article className='px-4 py-12 mx-auto prose prose-zinc prose-quoteless'>
-        {/* <Mdx code={project.body.code} /> */}
+        <Mdx code={project.body.code} />
       </article>
     </div>
   );
