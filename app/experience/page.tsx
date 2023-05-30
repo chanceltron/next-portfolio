@@ -125,7 +125,7 @@ const ProjectsPage = async () => {
                   <div className="p-2 rounded-full border border-zinc-600">
                     <div className="w-2 h-2 rounded-full bg-zinc-600" />
                   </div>
-                  <div className="mt-2 w-0.5 bg-zinc-600 h-full" />
+                  <div className="mt-2 w-0.5 rounded-full bg-zinc-600 h-full" />
                 </div>
                 <div className="w-2/3">
                   <Card>
