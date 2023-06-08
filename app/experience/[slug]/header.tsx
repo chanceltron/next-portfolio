@@ -64,7 +64,6 @@ export const Header: React.FC<Props> = ({ job, views }) => {
                 } `}
               />
             </Link>
-            <h2>{job.slug === 'superior-livestock' ? 'Website is in closed BETA' : ''}</h2>
           </div>
 
           <Link

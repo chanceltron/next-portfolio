@@ -2,11 +2,53 @@
 id: 3
 title: 'Node Battleship'
 slug: 'node-battleship'
-description: 'A simple Battleship game built using Node.js and readline/sync.'
-# website: 'https://folio-website-ashy.vercel.app/'
+description: "Do you like Battleship? Do you like Node? Well, you're in luck!"
+# website: 'commentedout.io'
 repository: 'https://github.com/chanceltron/node-battleship'
 date: 2022-09-07
 published: true
 ---
 
-Do you like Battleship? Do you like Node? Well, you're in luck! This is a simple Battleship game built using Node.js and readline/sync.
+# **Battleship Terminal Game**
+
+## **Overview**
+
+This project is an implementation of the classic board game, Battleship, designed to be played in a terminal. The game was developed purely using JavaScript and the readline-sync npm package for synchronous readline. The main focus of the project was to enhance coding skills, understanding of fundamental data structures, and algorithms.
+
+## **Features**
+
+### **Part 1: Basic Game Structure**
+
+- On application load, the game prompts, "Press any key to start the game."
+- Two ships are randomly placed on the board once the user initiates the game.
+- The user can guess a location to attack. The game responds with messages whether the attack was a hit, miss, or a repeated location.
+- The game continues until all ships are destroyed, and offers an option to play again.
+
+### **Part 2: Advanced Grid and Ship Placement**
+
+- The grid structure was expanded to a 10x10 grid using letters A-J and numbers 1-10.
+- Added a dynamic grid builder function to create a grid of any given size.
+- The ship placement feature was improved, now allowing for one 2-unit ship, two 3-unit ships, one 4-unit ship, and one 5-unit ship to be randomly placed on the board without overlap.
+
+### **Part 3: GUI Grid**
+
+- Incorporated a GUI-based grid in the terminal, marking hits with "X" and misses with "O", which refreshes after every turn.
+
+### **Part 4: Multiplayer Feature**
+
+- Modified the game for a player vs. computer mode. Ships for both player and computer are positioned automatically at the start.
+- Each turn consists of the player's attack followed by the computer's attack, with feedback on the outcomes of both attacks.
+
+## **Technical Details**
+
+This game was developed purely in JavaScript, and the following main technologies and techniques were used:
+
+- **JavaScript**: The game logic, data structures, and algorithms were implemented using JavaScript.
+
+- **readline-sync npm package**: This package was used to create a synchronous interface for readline, allowing the user to input their attack locations and game decisions.
+
+- **Modular functions**: The code was written in a way that each function performs a single objective, making the code more readable, modular, and reusable.
+
+## **Conclusion**
+
+This terminal-based Battleship game serves as a demonstration of my proficiency in JavaScript, understanding of fundamental data structures and algorithms, and ability to create a user-friendly terminal game. With features like dynamic grid creation and a player vs. computer mode, this project reflects my capability to develop interactive and fun terminal-based games.
